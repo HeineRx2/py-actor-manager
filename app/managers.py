@@ -23,17 +23,14 @@ class ActorManager:
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
 
-        actors: List[Actor] = []
-        for row in rows:
-            actors.append(
-                Actor(
-                    id=row[0],
-                    first_name=row[1],
-                    last_name=row[2],
-                )
+        return [
+            Actor(
+                id=row[0],
+                first_name=row[1],
+                last_name=row[2],
             )
-
-        return actors
+            for row in rows
+        ]
 
     def update(
         self,
